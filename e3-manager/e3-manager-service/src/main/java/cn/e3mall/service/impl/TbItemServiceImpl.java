@@ -116,4 +116,41 @@ public class TbItemServiceImpl implements TbItemService {
         return null;
     }
 
+    @Override
+    public E3Result instockItem(String ids) {
+        //判断id不为空
+        if (StringUtils.isNoneBlank(ids)){
+            String[] strings=ids.split(",");
+
+            for (String id:strings){
+                TbItem item = tbItemMapper.selectByPrimaryKey(Long.valueOf(id));
+                //商品状态，1-正常，2-下架，3-删除
+                item.setStatus((byte) 2);
+                //保存商品，修改过后要保存
+                tbItemMapper.updateByPrimaryKey(item);
+            }
+            return E3Result.ok();
+        }
+
+        return null;
+    }
+
+    @Override
+    public E3Result reshelfItem(String ids) {
+        if (StringUtils.isNoneBlank(ids)){
+            String[] strings=ids.split(",");
+
+            for (String id:strings){
+                TbItem item = tbItemMapper.selectByPrimaryKey(Long.valueOf(id));
+                //商品状态，1-正常，2-下架，3-删除
+                item.setStatus((byte) 1);
+                //保存商品，修改过后要保存
+                tbItemMapper.updateByPrimaryKey(item);
+            }
+            return E3Result.ok();
+        }
+
+        return null;
+    }
+
 }

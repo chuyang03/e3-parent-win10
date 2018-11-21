@@ -78,4 +78,21 @@ public class ItemController {
         return result;
     }
 
+    //批量下架架商品,下架商品只需要设置选中商品的状态码  商品状态，1-正常，2-下架，3-删除
+    @RequestMapping("/rest/item/instock")
+    @ResponseBody
+    public E3Result instockItem(String ids){
+        E3Result result=tbItemService.instockItem(ids);
+        return result;
+    }
+
+
+    //批量上架架商品,上架商品只需要设置选中商品的状态码  商品状态，1-正常，2-下架，3-删除
+    @RequestMapping("/rest/item/reshelf")
+    @ResponseBody
+    public E3Result reshelfItem(String ids){
+        E3Result result=tbItemService.reshelfItem(ids);
+        return result;
+    }
+
 }
