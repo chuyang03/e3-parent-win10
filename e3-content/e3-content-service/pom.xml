@@ -25,6 +25,12 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- Redis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
         <!--服务层需要依赖spring的jar包-->
         <!-- Spring -->
         <dependency>
