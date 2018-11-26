@@ -1,0 +1,28 @@
+开启需要的服务器：
+
+开启zookeeper：
+第一步：  cd /home/chuyang/zookeeper-3.4.6/bin
+第二步：  ./zkServer.sh start    开启zookeeper
+第三步：  ./zkServer.sh stop    关闭zookeeper
+第四步：  ./zkServer.sh status   查看zookeeper状态
+
+
+开启redis服务：
+开启redis单机版服务：
+第一步： cd /usr/local/redis/bin
+第二步： ./redis-server redis.conf  开启服务
+第三步： 关闭redis    ./redis-cli shutdown
+
+
+开启redis集群：
+第一步： cd /usr/local/redis-cluster
+第二步： ./start-all.sh   开启redis集群服务
+第三步： ./shutdown-all.sh    关闭redis集群
+
+
+启动solr服务：
+第一步： cd /usr/local/solr/tomcat
+第二步： bin/startup.sh开启tomcat就开启了solr服务
+关闭tomcat： bin/shutdown.sh
+
+浏览器访问  192.168.25.132:8080/solr
