@@ -47,4 +47,7 @@
 	<dubbo:reference interface="cn.e3mall.content.service.ContentCategoryService" id="contentCategoryService"/>
 	<dubbo:reference interface="cn.e3mall.content.service.ContentService" id="contentService"/>
 
+	<!--引用商品搜索服务-->
+	<dubbo:reference interface="cn.e3mall.search.service.SearchItemService" id="searchItemService" check="false"/>
+
 </beans>
