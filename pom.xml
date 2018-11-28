@@ -13,6 +13,8 @@
         <module>e3-manager</module>
         <module>e3-content</module>
         <module>e3-portal-web</module>
+        <module>e3-search</module>
+        <module>e3-manager-web</module>
     </modules>
 
 
