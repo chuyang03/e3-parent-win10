@@ -17,6 +17,7 @@
         <module name="e3-portal-web" />
         <module name="e3-search-interface" />
         <module name="e3-search-service" />
+        <module name="e3-search-web" />
       </profile>
     </annotationProcessing>
   </component>

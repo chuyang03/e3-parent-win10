@@ -57,4 +57,13 @@ public class SearchItem implements Serializable {
     public void setCategory_name(String category_name) {
         this.category_name = category_name;
     }
+
+    //获取图片地址数组,这个方法在search.jsp页面${item.images[0] }被调用
+    public String[] getImages(){
+        if (image!=null&&!"".equals(image)){
+            String[] strings = image.split(",");
+            return strings;
+        }
+        return null;
+    }
 }
