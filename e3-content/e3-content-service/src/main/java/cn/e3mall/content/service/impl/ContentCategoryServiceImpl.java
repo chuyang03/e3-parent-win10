@@ -22,7 +22,9 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
     public List<EasyUITreeNode> getContentCategoryList(long parentId) {
         TbContentCategoryExample example=new TbContentCategoryExample();
         TbContentCategoryExample.Criteria criteria = example.createCriteria();
+        //设置查询条件
         criteria.andParentIdEqualTo(parentId);
+        //执行查询
         List<TbContentCategory> tbContentCategories = tbContentCategoryMapper.selectByExample(example);
 
         List<EasyUITreeNode> nodeList=new ArrayList<>();

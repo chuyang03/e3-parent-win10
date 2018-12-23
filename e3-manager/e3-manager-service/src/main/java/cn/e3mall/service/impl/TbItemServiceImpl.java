@@ -11,8 +11,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +27,11 @@ public class TbItemServiceImpl implements TbItemService {
     private TbItemMapper tbItemMapper;
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
+    @Autowired
+    private JmsTemplate jmsTemplate;
+    //根据id属性注入
+    @Resource
+    private Destination topicDestination;
 
     @Override
     public TbItem getItemById(long ItemId) {
@@ -72,7 +81,7 @@ public class TbItemServiceImpl implements TbItemService {
     @Override
     public E3Result addItem(TbItem tbItem, String desc) {
         //生成商品id
-        long id = IDUtils.genItemId();
+        final long id = IDUtils.genItemId();
         //补全商品信息
         tbItem.setId(id);
         tbItem.setStatus((byte) 1);
@@ -87,7 +96,18 @@ public class TbItemServiceImpl implements TbItemService {
         tbItemDesc.setItemDesc(desc);
         tbItemDesc.setCreated(new Date());
         tbItemDesc.setUpdated(new Date());
+        //向商品描述表插入数据
         tbItemDescMapper.insert(tbItemDesc);
+
+        //商品添加完成后，向activemq发送一个添加商品的id的消息
+        jmsTemplate.send(topicDestination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                //创建发送的消息
+                TextMessage textMessage = session.createTextMessage(id + "");
+                return textMessage;
+            }
+        });
 
         return E3Result.ok();
     }

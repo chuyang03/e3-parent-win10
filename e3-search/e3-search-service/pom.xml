@@ -72,6 +72,12 @@
             <version>0.8</version>
         </dependency>
 
+        <!--消息中间件-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+
 
         <!-- dubbo相关 -->
         <dependency>

@@ -9,6 +9,9 @@
     <file type="web" url="file://$PROJECT_DIR$/e3-search-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-search/e3-search-service" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
